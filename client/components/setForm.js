@@ -15,7 +15,7 @@ class Form extends Component {
         return (
             <div>
                 <form onSubmit={props.handleSubmit}>
-                    <input placeholder='Add something to your set list' value={this.state.value} onChange={this.handleChange} />
+                    <input placeholder='Add to your set list' value={this.state.value} onChange={this.handleChange} />
                     <input type='submit' value='Submit' />
                 </form>
             </div>

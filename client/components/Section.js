@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import Section from './Section'
 
-class App extends Component {
+class Section extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -63,15 +62,17 @@ class App extends Component {
         this.addToList(this.getUrl(this.state.value));
     }
 
-    getUrl(str){
-        return str.substring(88,str.length-11)
+    getUrl(str) {
+        return str.substring(88, str.length-11)
     }
 
     render() {
         const listOfItems = this.state.listOfItems;
+
         return (
             <div>
-                <div className='set-list'>
+                <h2>Playlist of the month</h2>
+                <div className='playlist'>
                     <ul>
                         {listOfItems.map(i => <li key={i}>
                             <iframe width="100%" height="110" scrolling="no" frameBorder="no" allow="autoplay" src={i.description}></iframe>
@@ -85,7 +86,6 @@ class App extends Component {
                         <input type='submit' value='Add' />
                     </form>
                 </div>
-                <Section/>
             </div>
         )
     }
@@ -93,4 +93,4 @@ class App extends Component {
 
 
 
-export default App;
+export default Section;

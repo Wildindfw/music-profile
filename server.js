@@ -24,4 +24,3 @@ app.post('/add', listItemsController.addItem);
 app.delete('/', listItemsController.deleteItem);
 
 app.listen(3000, () => console.log('Listening on port 3000'));
-

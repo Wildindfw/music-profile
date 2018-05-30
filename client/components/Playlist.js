@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import Playlist from './Playlist';
-import Albums from './Albums';
 
-class App extends Component {
+class Playlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +16,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('/allSets', { method: 'GET' })
+        fetch('/playLists', { method: 'GET' })
         .then(res => { return res.json() })
             .then(res => {
                 if (res) {
@@ -31,11 +29,11 @@ class App extends Component {
     }
 
     addToList(data) {
-        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ description: data, date: new Date() }) })
+        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: data, date: new Date() }) })
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
-                        listOfItems: [...this.state.listOfItems, { description: data }],
+                        listOfItems: [...this.state.listOfItems, { name: data }],
                         value: ''
                     });
                 }
@@ -64,31 +62,30 @@ class App extends Component {
         this.addToList(this.getUrl(this.state.value));
     }
 
-    getUrl(str){
-        return str.substring(88,str.length-11)
+    getUrl(str) {
+        return str.substring(13, str.length-101)
     }
 
     render() {
         const listOfItems = this.state.listOfItems;
+
         return (
             <div>
-                <h2>Set Lists</h2>
-                <div className='set-list'>
+                <h2>Playlist of the Moment</h2>
+                <div className='playlist'>
                     <ul>
                         {listOfItems.map(i => <li key={i}>
-                            <iframe width="100%" height="110" scrolling="no" frameBorder="no" allow="autoplay" src={i.description}></iframe>
+                            <iframe src={i.name} width="100%" height="110" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                             <button key={i} onClick={this.delete.bind(this, i)}>Delete</button>
                         </li>)}
                     </ul>
                 </div>
                 <div>
                     <form onSubmit={this.handleSubmit}>
-                        <input className='field' placeholder='Add to your set list' value={this.state.value} onChange={this.handleChange} />
+                        <input className='field' placeholder='Add a playlist' value={this.state.value} onChange={this.handleChange} />
                         <input className='button' type='submit' value='Add' />
                     </form>
                 </div>
-                <Playlist/>
-                <Albums/>
             </div>
         )
     }
@@ -96,4 +93,4 @@ class App extends Component {
 
 
 
-export default App;
+export default Playlist;

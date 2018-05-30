@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //route for login
+app.get('/', (req, res) => {
+  res.cookie('access token', req.query('access_token'))
+  res.send('success')
+})
 
 app.get('/all', listItemsController.getExistingList);
 
@@ -23,5 +27,5 @@ app.post('/add', listItemsController.addItem);
 
 app.delete('/', listItemsController.deleteItem);
 
-app.listen(3000, () => console.log('Listening on port 3000'));
+app.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'));
 

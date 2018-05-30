@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 
 //route for login
 
-app.get('/all', listItemsController.getExistingList);
+app.get('/allSets', listItemsController.getExistingSetlist);
+app.get('/playLists', listItemsController.getExistingPlaylist);
 
 app.post('/add', listItemsController.addItem);
 

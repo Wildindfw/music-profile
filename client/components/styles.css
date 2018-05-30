@@ -1,8 +1,91 @@
-.set-list {
-    border: 2px solid black;
-    width: 50%;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(250, 247, 236);
+    background-color: #333;
 }
 
-ul{
+h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+div {
+    padding: 1rem;
+    overflow: scroll;
+}
+
+.set-list, .playlist {
+    border: 1px solid rgb(250, 247, 236);
+    width: 40%;
+    height: 200px;
+    background-color: rgb(36, 36, 36);
+    border-radius: .25rem;
+}
+
+ul {
     list-style-type: none;
+}
+
+input.field {
+    color: rgb(250, 247, 236);
+    border: 1px solid rgb(250, 247, 236);
+    text-decoration: none;
+    background-color: transparent;
+    display: inline-block;
+    font-weight: 400;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+input.field:focus {
+    outline: none;
+}
+
+input.button {
+    color: rgb(250, 247, 236);
+    border: 1px solid rgb(250, 247, 236);
+    text-decoration: none;
+    background-color: transparent;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin-left: 1rem;
+}
+
+input.button:hover {
+    background-color: rgb(250, 247, 236);
+    color: #333;
+}
+
+button {
+    color: rgb(250, 247, 236);
+    border: 1px solid rgb(250, 247, 236);
+    text-decoration: none;
+    background-color: transparent;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: .275rem .50rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: .25rem;
+}
+
+button:hover {
+    background-color: rgb(250, 247, 236);
+    color: #333;
 }

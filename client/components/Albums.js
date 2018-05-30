@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 
-class Section extends Component {
+class Albums extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ class Section extends Component {
     }
 
     componentDidMount() {
-        fetch('/all', { method: 'GET' })
+        fetch('/playLists', { method: 'GET' })
         .then(res => { return res.json() })
             .then(res => {
                 if (res) {
@@ -29,11 +29,11 @@ class Section extends Component {
     }
 
     addToList(data) {
-        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ description: data, date: new Date() }) })
+        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: data, date: new Date() }) })
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
-                        listOfItems: [...this.state.listOfItems, { description: data }],
+                        listOfItems: [...this.state.listOfItems, { name: data }],
                         value: ''
                     });
                 }
@@ -63,7 +63,7 @@ class Section extends Component {
     }
 
     getUrl(str) {
-        return str.substring(88, str.length-11)
+        return str.substring(13, str.length-101)
     }
 
     render() {
@@ -71,19 +71,19 @@ class Section extends Component {
 
         return (
             <div>
-                <h2>Playlist of the month</h2>
+                <h2>Favorite Albums</h2>
                 <div className='playlist'>
                     <ul>
                         {listOfItems.map(i => <li key={i}>
-                            <iframe width="100%" height="110" scrolling="no" frameBorder="no" allow="autoplay" src={i.description}></iframe>
+                            <iframe src={i.name} width="100%" height="110" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                             <button key={i} onClick={this.delete.bind(this, i)}>Delete</button>
                         </li>)}
                     </ul>
                 </div>
                 <div>
                     <form onSubmit={this.handleSubmit}>
-                        <input placeholder='Add something to your set list' value={this.state.value} onChange={this.handleChange} />
-                        <input type='submit' value='Add' />
+                        <input className='field' placeholder='Add an album' value={this.state.value} onChange={this.handleChange} />
+                        <input className='button' type='submit' value='Add' />
                     </form>
                 </div>
             </div>
@@ -93,4 +93,4 @@ class Section extends Component {
 
 
 
-export default Section;
+export default Albums;

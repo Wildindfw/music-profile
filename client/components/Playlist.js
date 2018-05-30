@@ -75,7 +75,12 @@ class Playlist extends Component {
                 <div className='playlist'>
                     <ul>
                         {listOfItems.map(i => <li key={i}>
-                            <iframe src={i.name} width="100%" height="110" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            < iframe src = {i.name}
+                            width = "300"
+                            height = "380"
+                            frameborder = "0"
+                            allowtransparency = "true"
+                            allow = "encrypted-media" > </iframe>
                             <button key={i} onClick={this.delete.bind(this, i)}>Delete</button>
                         </li>)}
                     </ul>

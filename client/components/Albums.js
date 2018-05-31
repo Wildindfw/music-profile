@@ -16,7 +16,7 @@ class Albums extends Component {
     }
 
     componentDidMount() {
-        fetch('/playLists', { method: 'GET' })
+        fetch('/albums', { method: 'GET' })
         .then(res => { return res.json() })
             .then(res => {
                 if (res) {
@@ -29,11 +29,11 @@ class Albums extends Component {
     }
 
     addToList(data) {
-        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: data, date: new Date() }) })
+        fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title: data, date: new Date() }) })
             .then((res) => {
                 if (res.status === 200) {
                     this.setState({
-                        listOfItems: [...this.state.listOfItems, { name: data }],
+                        listOfItems: [...this.state.listOfItems, { title: data }],
                         value: ''
                     });
                 }
@@ -75,7 +75,7 @@ class Albums extends Component {
                 <div className='playlist'>
                     <ul>
                         {listOfItems.map(i => <li key={i}>
-                            <iframe src={i.name} width="100%" height="110" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <iframe src={i.title} width="100%" height="300" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                             <button key={i} onClick={this.delete.bind(this, i)}>Delete</button>
                         </li>)}
                     </ul>

@@ -9,9 +9,9 @@ class App extends Component {
   render() {
     return (
       <div id='components-wrapper'>
-        < SetList />
-        < Playlist />
-        <Albums />
+        <SetList/>
+        <Playlist/>
+        <Albums/>
       </div>
       )
   }

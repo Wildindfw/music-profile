@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const listItemsController = require('./ListItemsController.js')
+const listItemsController = require('./controllers/ListItemsController.js')
 
 app.use(express.static('build'));
 
@@ -15,10 +15,12 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.sendFile('login.html');
+});
 //route for login
 app.get('/', (req, res) => {
-  res.cookie('access token', req.query('access_token'))
-  res.send('success')
+  res.redirect('process.env.BACKEND_URI || "http://localhost:8888"');
 })
 
 app.get('/allSets', listItemsController.getExistingSetlist);

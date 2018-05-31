@@ -1,6 +1,6 @@
-const ListItem = require('./ListItemModel.js');
-const PlaylistItem = require('./PlaylistModel.js');
-const AlbumItem = require('./AlbumsModel.js');
+const ListItem = require('../models/ListItemModel.js');
+const PlaylistItem = require('../models/PlaylistModel.js');
+const AlbumItem = require('../models/AlbumsModel.js');
 const mongoose = require('mongoose');
 
 const ListController = {
@@ -42,6 +42,7 @@ const ListController = {
             return res.send(result);
         });
     },
+
     getExistingAlbums(req, res) {
         AlbumItem.find({}, (err, result) => {
             if (result === null) { return res.sendStatus(418) };
@@ -65,9 +66,9 @@ const ListController = {
                 return res.sendStatus(200);
             });
         } else if (req.body.title) {
-            const title= req.body.description;
+            const title = req.body.title;
 
-            ListItem.findOneAndRemove({ title}, (err, result) => {
+            ListItem.findOneAndRemove({ title }, (err, result) => {
                 if (err) { return res.sendStatus(418) }
                 return res.sendStatus(200);
             });
